@@ -1,19 +1,14 @@
-class BaseFrage {
-    constructor(text) {
+
+class Frage{
+    constructor(text, optionen, richtigeIndex) {
         this.text = text;
+        this.optionen = optionen;
+        this.richtigeIndex = richtigeIndex;
     }
 
     anzeigenFrageText() {
         const frageText = document.getElementById("frage-text");
         frageText.textContent = this.text;
-    }
-}
-
-class Frage extends BaseFrage {
-    constructor(text, optionen, richtigeIndex) {
-        super(text);
-        this.optionen = optionen;
-        this.richtigeIndex = richtigeIndex;
     }
 
     pruefeAntwort(index) {
