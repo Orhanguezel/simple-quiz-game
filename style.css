@@ -13,7 +13,7 @@ body {
     background-color: #f4f4f4;
 }
 
-.container {
+#quiz-container, #ergebnis-container {
     width: 90%;
     max-width: 600px;
     text-align: center;
@@ -23,24 +23,42 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+h2 {
     margin-bottom: 20px;
     color: #333;
 }
 
-#frage-container {
+#frage-text {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+#optionen {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 #optionen button {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
     border: 1px solid #ddd;
     border-radius: 4px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+#optionen button:hover {
+    background-color: burlywood;
+}
+
+#timer {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 20px;
 }
 
 #weiter-button, #neu-starten-button {
@@ -54,10 +72,12 @@ h1 {
     margin-top: 10px;
 }
 
-#ergebnis-container {
+#weiter-button.hidden, #ergebnis-container.hidden {
     display: none;
 }
 
-.hidden {
-    display: none;
+#ergebnis-container p {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
 }

@@ -7,23 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Quiz-Spiel</h1>
-        <div id="quiz-container">
-            <div id="frage-container">
-                <h2 id="frage-text">Frage wird hier angezeigt</h2>
-                <div id="optionen">
-                    <!-- Optionen werden hier hinzugefügt -->
-                </div>
-            </div>
-            <button id="weiter-button">Nächste Frage</button>
-        </div>
-        <div id="ergebnis-container" class="hidden">
-            <h2>Ergebnis</h2>
-            <p id="punktestand-text">Ihr Punktestand: 0</p>
-            <button id="neu-starten-button">Neu Starten</button>
-        </div>
+    <div id="quiz-container">
+        <h2 id="frage-text"></h2>
+        <div id="optionen"></div>
+        <p id="timer">Zeit: 60s</p>
     </div>
+    <div id="ergebnis-container" class="hidden">
+        <h2>Quiz Ergebnis</h2>
+        <p id="punktestand-text"></p>
+        <p id="richtig-falsch-text"></p>
+        <button id="neu-starten-button">Neustart</button>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
