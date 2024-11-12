@@ -1,12 +1,16 @@
 {
-  "name": "proje-adi",
+  "name": "Quiz-Spiel",
   "version": "1.0.0",
+  "description": "Ein einfaches Quiz-Spiel mit HTML, CSS und JavaScript",
+  "main": "index.html",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "echo 'Preparing for deployment...'", 
     "deploy": "gh-pages -d ."
   },
+  "author": "Orhan Guezel",
+  "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
-    "gh-pages": "^X.X.X"
+    "gh-pages": "^6.1.1"
   }
 }
-
