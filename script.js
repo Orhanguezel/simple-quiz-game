@@ -29,7 +29,6 @@ class Frage{
         });
     }
 }
-
 class Quiz {
     constructor(fragen) {
         this.fragen = fragen;
@@ -38,8 +37,9 @@ class Quiz {
         this.richtigZaehler = 0;
         this.falschZaehler = 0;
         this.punkteProFrage = 20;
-        this.timer = 60;
+        this.timer = 10;
         this.timerInterval = null;
+        this.benutzerAntworten = []; 
     }
 
     starteQuiz() {
@@ -48,6 +48,9 @@ class Quiz {
     }
 
     ladeFrage() {
+        clearInterval(this.timerInterval);
+        this.timer = 10;
+        this.starteTimer();
         const aktuelleFrage = this.fragen[this.aktuelleFrageIndex];
         aktuelleFrage.anzeigenFrage();
     }
@@ -55,54 +58,75 @@ class Quiz {
     waehleAntwort(gewaehlterIndex) {
         clearInterval(this.timerInterval);
         const aktuelleFrage = this.fragen[this.aktuelleFrageIndex];
-        if (aktuelleFrage.pruefeAntwort(gewaehlterIndex)) {
+
+       
+        this.benutzerAntworten[this.aktuelleFrageIndex] = gewaehlterIndex !== null ? gewaehlterIndex : "Keine Antwort";
+
+        if (gewaehlterIndex !== null && aktuelleFrage.pruefeAntwort(gewaehlterIndex)) {
             this.punktestand += this.punkteProFrage;
             this.richtigZaehler++;
-        } else {
+        } else if (gewaehlterIndex !== null) {
             this.falschZaehler++;
         }
+        
         this.aktuelleFrageIndex++;
 
         if (this.aktuelleFrageIndex < this.fragen.length) {
-            this.starteQuiz();
+            this.ladeFrage();
         } else {
             this.zeigeErgebnis();
         }
     }
 
     zeigeErgebnis() {
-        document.getElementById("quiz-container").style.display = "none"; 
-    
+        document.getElementById("quiz-container").style.display = "none";
+
         const ergebnisContainer = document.getElementById("ergebnis-container");
         ergebnisContainer.classList.remove("hidden");
-    
-        document.getElementById("frage-text").style.display = "none";
-    
 
         const punktestandText = document.getElementById("punktestand-text");
         punktestandText.textContent = `Gesamtpunktzahl: ${this.punktestand}`;
-    
+
         const richtigFalschText = document.getElementById("richtig-falsch-text");
         richtigFalschText.textContent = `Richtige Antworten: ${this.richtigZaehler}, Falsche Antworten: ${this.falschZaehler}`;
-    }
 
-    quizZuruecksetzen() {
-        this.aktuelleFrageIndex = 0;
-        this.punktestand = 0;
-        this.richtigZaehler = 0;
-        this.falschZaehler = 0;
-    
+        const detaillierteErgebnisListe = document.getElementById("detaillierte-ergebnis-liste");
+        detaillierteErgebnisListe.innerHTML = ""; 
+        detaillierteErgebnisListe.style.display = "none"; 
 
-        document.getElementById("quiz-container").style.display = "block";
-        document.getElementById("frage-text").style.display = "block";
-        document.getElementById("ergebnis-container").classList.add("hidden");
-    
-        this.starteQuiz();
+      
+        this.fragen.forEach((frage, index) => {
+            const listItem = document.createElement("li");
+
+            const frageText = document.createElement("p");
+            frageText.textContent = `Frage ${index + 1}: ${frage.text}`;
+
+            const benutzerAntwort = document.createElement("p");
+            benutzerAntwort.textContent = `Ihre Antwort: ${
+                this.benutzerAntworten[index] !== "Keine Antwort"
+                    ? frage.optionen[this.benutzerAntworten[index]]
+                    : "Antwort nicht gegeben"
+            }`;
+
+            const richtigeAntwort = document.createElement("p");
+            richtigeAntwort.textContent = `Richtige Antwort: ${frage.optionen[frage.richtigeIndex]}`;
+
+            benutzerAntwort.style.color = this.benutzerAntworten[index] === frage.richtigeIndex ? "green" : "red";
+
+            listItem.appendChild(frageText);
+            listItem.appendChild(benutzerAntwort);
+            listItem.appendChild(richtigeAntwort);
+            detaillierteErgebnisListe.appendChild(listItem);
+        });
+
+        const detaillierteErgebnisButton = document.getElementById("detaillierte-ergebnis-button");
+        detaillierteErgebnisButton.onclick = () => {
+            detaillierteErgebnisListe.style.display =
+                detaillierteErgebnisListe.style.display === "none" ? "block" : "none";
+        };
     }
-    
 
     starteTimer() {
-        this.timer = 10;
         const timerText = document.getElementById("timer");
         timerText.textContent = `Zeit: ${this.timer}s`;
         clearInterval(this.timerInterval);
@@ -113,11 +137,25 @@ class Quiz {
 
             if (this.timer === 0) {
                 clearInterval(this.timerInterval);
-                this.waehleAntwort(null);
+                this.waehleAntwort(null); 
             }
         }, 1000);
     }
+
+    quizZuruecksetzen() {
+        clearInterval(this.timerInterval);
+        this.aktuelleFrageIndex = 0;
+        this.punktestand = 0;
+        this.richtigZaehler = 0;
+        this.falschZaehler = 0;
+        document.getElementById("quiz-container").style.display = "block";
+        document.getElementById("ergebnis-container").classList.add("hidden");
+        this.starteQuiz();
+    }
 }
+
+
+
 
 const fragen = [
     new Frage("Was ist die Hauptstadt von Deutschland?", ["Berlin", "München", "Hamburg", "Köln"], 0),

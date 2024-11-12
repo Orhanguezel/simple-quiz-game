@@ -61,7 +61,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-#weiter-button, #neu-starten-button {
+#weiter-button, #neu-starten-button, #detaillierte-ergebnis-button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -72,6 +72,10 @@ h2 {
     margin-top: 10px;
 }
 
+#weiter-button:hover, #neu-starten-button:hover, #detaillierte-ergebnis-button:hover {
+    background-color: #45a049;
+}
+
 #weiter-button.hidden, #ergebnis-container.hidden {
     display: none;
 }
@@ -80,4 +84,18 @@ h2 {
     font-size: 18px;
     color: #333;
     margin: 10px 0;
+}
+
+#detaillierte-ergebnis-liste {
+    list-style-type: none;
+    padding: 0;
+}
+
+#detaillierte-ergebnis-liste li {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#detaillierte-ergebnis-liste p {
+    margin: 5px 0;
 }
