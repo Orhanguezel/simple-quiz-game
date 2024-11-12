@@ -1,0 +1,12 @@
+{
+  "name": "proje-adi",
+  "version": "1.0.0",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^X.X.X"
+  }
+}
+
