@@ -1,6 +1,5 @@
-İşte projenin amacını, işleyişini ve özelliklerini açıklayan bir `README.md` içeriği:
 
-```markdown
+---
 # Quiz-Spiel
 
 Ein einfaches Quiz-Spiel mit JavaScript, HTML und CSS. Dieses Projekt ermöglicht es dem Benutzer, eine Reihe von Quizfragen zu beantworten und am Ende das Ergebnis sowie die Anzahl der richtigen und falschen Antworten zu sehen.
@@ -8,6 +7,12 @@ Ein einfaches Quiz-Spiel mit JavaScript, HTML und CSS. Dieses Projekt ermöglich
 ## Projektübersicht
 
 Das Quiz-Spiel besteht aus einer Reihe von Fragen, die dem Benutzer nacheinander präsentiert werden. Für jede Frage gibt es mehrere Antwortoptionen, und der Benutzer muss die richtige Antwort auswählen. Der Benutzer hat pro Frage eine begrenzte Zeit (60 Sekunden), um eine Antwort auszuwählen. Am Ende des Quiz wird die Gesamtpunktzahl sowie die Anzahl der richtigen und falschen Antworten angezeigt.
+
+## Demo
+
+![Quiz-Spiel Bildschirm](./img.png)
+
+*Das Bild oben zeigt die Benutzeroberfläche des Quiz-Spiels.*
 
 ## Funktionen
 
@@ -26,7 +31,7 @@ Das Quiz-Spiel besteht aus einer Reihe von Fragen, die dem Benutzer nacheinander
    ```
 2. Wechseln Sie in das Projektverzeichnis:
    ```bash
-   cd quiz-spiel
+   cd simple-quiz-spiel
    ```
 3. Öffnen Sie die `index.html` Datei in Ihrem Browser, um das Spiel zu starten.
 
@@ -81,5 +86,3 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert.
 
 Bei Fragen oder Anregungen können Sie sich gerne an mich wenden.
 ```
-
-Bu içerik, projeyi tanımlar, nasıl çalıştığını açıklar ve kullanım talimatları verir. README dosyasını bu şekilde oluşturarak projeyi daha anlaşılır ve kullanışlı hale getirebilirsiniz.
